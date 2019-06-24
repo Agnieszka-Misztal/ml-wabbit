@@ -1,11 +1,11 @@
-﻿Projekt pozwalający przewidywać ocene produktu na podtsawie tekstu komentarza/opini wystawionego przez użytkowników sklepu.
+﻿Projekt pozwalający przewidywać ocenę produktu na podstawie tekstu komentarza/opinii wystawionego przez użytkowników sklepu.
 
 Pobrane dane:
 
 - Dane pochodzą z serwisu ceneo.pl a konkretniej z działu www.ceneo.pl/Smartfony
-- Został utworzony program CenoScrapper który pozwala na pobranie danych online z wybranej kategori lub na parsowanie zapisanych danych do pliku(zapisane strony internetowe).
-- Udało się pozyskać 22 715 unikatowych opini razem z oceną.
-- Używając programu CeneoScrapper dane zostały odpowiednio przygotowane oraz podzielone w skali 90%/10% . 20 444 opini użyto do treningu, następnie 2 271 opinii użyto do testów wytrenowanego modelu.  
+- Został utworzony program CenoScrapper który pozwala na pobranie danych online z wybranej kategorii lub na parsowanie zapisanych danych do pliku(zapisane strony internetowe).
+- Udało się pozyskać 22 715 unikatowych opinii razem z oceną.
+- Używając programu CeneoScrapper dane zostały odpowiednio przygotowane oraz podzielone w skali 90%/10% . 20 444 opinii użyto do treningu, następnie 2 271 opinii użyto do testów wytrenowanego modelu.  
 - Zostały użyte następujące cechy:
 	- Ilość słów
 	- Ilość wystąpień słowa 'dobry'
@@ -23,29 +23,29 @@ Trening:
 
 - Do przeprowadzenia treningu użyto następujących parametrów: vw Opinie_train.vw -c -k --passes 40 --ngram 7 -b 24 -f Opinie.model.vw
 - Gdzie parametry oznaczają:	
-		vw - Vowpal Wabbit
-		-c -k - oznacza użycie cache dla wielu iteracji oraz usunięcie istniejącego już cache przy starcie nowego treningu
-		--passes 30 - oznacza ilość iretacji jaką ma wykonać uczenie na materiale wejściowym. Wększa liczba może pomóc w dokładności lecz zbyt duża wartość może spowodować tzw. "ower fit" czyli model będzie zbyt
-		wytrenowany na danych wejściowych i nie będzie rozpoznawał innych danych podczas testów.
-		--ngram 7 - 
-		-b 24 - oznacza użycie 24 bitowych hashy tekstu zamiast standardowych 18.
-		-f Opinie.model.vw -  plik wyjściowy z wytrenowanym modelem
-		
-		
+	vw - Vowpal Wabbit
+	-c -k - oznacza użycie cache dla wielu iteracji oraz usunięcie istniejącego już cache przy starcie nowego treningu
+	--passes 30 - oznacza ilość iteracji jaką ma wykonać uczenie na materiale wejściowym. Większa liczba może pomóc w dokładności lecz zbyt duża wartość może spowodować tzw. "ower fit" czyli model będzie zbyt
+	wytrenowany na danych wejściowych i nie będzie rozpoznawał innych danych podczas testów.
+	--ngram 7 - 
+	-b 24 - oznacza użycie 24 bitowych hashy tekstu zamiast standardowych 18.
+	-f Opinie.model.vw -  plik wyjściowy z wytrenowanym modelem
+
+
 Testy:
 
- - Do przeprowadzenia testów użyto następujących parametrów: vw Opinie_test.vw -t -i Opinie.model.vw -p Opinie.preds.txt
- - Gdzie parametry oznaczają:
-		vw - Vowpal Wabbit
-		Opinie_test.vw - przygotowane opinie do testów
-		-t - ustawienie trybu testowania
-		-i Opinie.model.vw - używcie określonego pliku z wyuczonym modelem
-		-p Opinie.preds.txt - użycie pliku z określoną nazwą do zapisania wyników testów
-		
+- Do przeprowadzenia testów użyto następujących parametrów: vw Opinie_test.vw -t -i Opinie.model.vw -p Opinie.preds.txt
+- Gdzie parametry oznaczają:
+	vw - Vowpal Wabbit
+	Opinie_test.vw - przygotowane opinie do testów
+	-t - ustawienie trybu testowania
+	-i Opinie.model.vw - używcie określonego pliku z wyuczonym modelem
+	-p Opinie.preds.txt - użycie pliku z określoną nazwą do zapisania wyników testów
+
 
 Sprawdzenie wyniku:
 
 - W wyniku testów na wyuczonym modelu otrzymaliśmy plik Opinie.preds.txt który zawiera unikalne id opini testowej oraz przewidzianą ocenę.
-- Używając programu CeneoScrapper możemy uzyskać plik wynikowy (Wynik.txt) porównujący prawdziwą ocenę z tą przewidzianą oraz uzyskać wynik średni ewaluacji wszystkich opini testowych.
+- Używając programu CeneoScrapper możemy uzyskać plik wynikowy (Wynik.txt) porównujący prawdziwą ocenę z tą przewidzianą oraz uzyskać wynik średni ewaluacji wszystkich opinii testowych.
 
 Dla naszych danych uzyskaliśmy średnią ewaluacji - 0.4860352
