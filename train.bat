@@ -1,0 +1,1 @@
+vw Opinie_train.vw -c -k --passes 30 --ngram 7 -b 24 -f Opinie.model.vw

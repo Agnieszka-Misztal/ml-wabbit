@@ -1,0 +1,1 @@
+vw Opinie_test.vw -t -i Opinie.model.vw -p Opinie.preds.txt
