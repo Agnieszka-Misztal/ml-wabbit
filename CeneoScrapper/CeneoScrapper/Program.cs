@@ -196,30 +196,35 @@ namespace CeneoScrapper
                 //wszystkie litery male
                 var labelSmall = partLabel.ToLower();
 
-                //czy zawiera dobry;
-                var propGoodWord = Regex.Matches(labelSmall, " dobry").Count; 
 
-                //czt zawiera polecam
-                var propPolecamWord = Regex.Matches(labelSmall, " polecam").Count;
+                var propGoodWord = Regex.Matches(labelSmall, "dobry").Count; 
+
+                var best = Regex.Matches(labelSmall, "najlepszy").Count; 
+
+                var propPolecamWord = Regex.Matches(labelSmall, "polecam").Count;
 
                 var propNiePolecamWord = Regex.Matches(labelSmall, "nie polecam").Count;
 
                 var superCount = Regex.Matches(labelSmall, "super").Count;
 
-                var okCount = Regex.Matches(labelSmall, " ok").Count;
+                var okCount = Regex.Matches(labelSmall, "ok").Count;
 
-                var low_camera = Regex.Matches(labelSmall, " słaby aparat").Count;
+                var weak = Regex.Matches(labelSmall, "słaby").Count;
+                weak += Regex.Matches(labelSmall, " slaby").Count;
 
+                var notWorking = Regex.Matches(labelSmall, "nie działa").Count;
+                notWorking += Regex.Matches(labelSmall, " nie dziala").Count;
 
+                var worst = Regex.Matches(labelSmall, "najgorszy").Count;
 
-                //czy zawiera
+                var fatal = Regex.Matches(labelSmall, "fatalny").Count;
 
-                //3 '4 |f a |a word_count:1
 
                 var trainLine = score + " '" + counter + " |f " + partLabel + " |a word_count:" + wordCount +
                                 " good_count:" + propGoodWord + " polcam_count:" + propPolecamWord + " super_count:" +
                                 superCount + " ok_count:" + okCount + " niepolecam: " + propNiePolecamWord +
-                                " lowa_camera: " + low_camera;
+                                " weak: " + weak + " not_working: " + notWorking + " worst:" + worst + " fatal: " +
+                                fatal + " best: " + best;
 
                 trainData.Add(trainLine);
 
@@ -298,7 +303,12 @@ namespace CeneoScrapper
 
             float realScore = score / mapping.Count;
 
+            File.AppendAllText("Wynik.txt",  "\n");
+
             Console.WriteLine("Real Score: " + realScore);
+            File.AppendAllText("Wynik.txt", "Real Score: " + realScore + "\n");
+
+            File.AppendAllText("Wynik.txt", "\n");
 
         }
 
