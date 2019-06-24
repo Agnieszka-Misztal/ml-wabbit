@@ -359,7 +359,7 @@ namespace CeneoScrapper
                 Console.WriteLine("Uzycie programu:");
                 Console.WriteLine("");
 
-                Console.WriteLine("CeneoScrapper.exe -parse Uroda Smartforny [kolejny_dzial]  - Pobranie dancyh z wybranych dzialow");
+                Console.WriteLine("CeneoScrapper.exe -parse Smartforny [kolejny_dzial]  - Pobranie dancyh z wybranych dzialow");
                 Console.WriteLine("CeneoScrapper.exe -file Plik.txt  - Pobranie dancyh z pliku");
                 Console.WriteLine("CeneoScrapper.exe -prepare  Przygotowanie danych do uczenia");
                 Console.WriteLine("CeneoScrapper.exe -test plik_testowt.vm preds.txt - Wyliczenie poziomu bledu");
